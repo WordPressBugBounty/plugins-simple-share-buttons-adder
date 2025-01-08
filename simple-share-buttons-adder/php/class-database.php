@@ -177,6 +177,7 @@ class Database {
 			'ssba_mobile_breakpoint'          => '',
 
 			// Custom images.
+			'ssba_custom_bluesky'             => '',
 			'ssba_custom_email'               => '',
 			'ssba_custom_facebook'            => '',
 			'ssba_custom_flipboard'           => '',
@@ -193,6 +194,7 @@ class Database {
 			'ssba_custom_stumbleupon'         => '',
 			'ssba_custom_buffer'              => '',
 			'ssba_custom_flattr'              => '',
+			'ssba_custom_threads'             => '',
 			'ssba_custom_telegram'            => '',
 			'ssba_custom_tumblr'              => '',
 			'ssba_custom_vk'                  => '',
@@ -446,6 +448,9 @@ class Database {
 			'buffer'      => array(
 				'full_name' => esc_html__( 'Buffer', 'simple-share-buttons-adder' ),
 			),
+			'bluesky'      => array(
+				'full_name' => esc_html__( 'Bluesky', 'simple-share-buttons-adder' ),
+			),
 			'diggit'      => array(
 				'full_name' => esc_html__( 'Diggit', 'simple-share-buttons-adder' ),
 			),
@@ -493,6 +498,9 @@ class Database {
 			),
 			'tumblr'      => array(
 				'full_name' => esc_html__( 'Tumblr', 'simple-share-buttons-adder' ),
+			),
+			'threads'      => array(
+				'full_name' => esc_html__( 'Threads', 'simple-share-buttons-adder' ),
 			),
 			'twitter'     => array(
 				'full_name' => esc_html__( 'Twitter', 'simple-share-buttons-adder' ),

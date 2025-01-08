@@ -811,6 +811,7 @@ class Buttons {
 			'amazon'          => '#FFB300',
 			'blogger'         => '#ff8000',
 			'blm'             => '#000000',
+			'bluesky'         => '#097AFE',
 			'buffer'          => '#323B43',
 			'copy'            => '#14682B',
 			'delicious'       => '#205cc0',
@@ -859,6 +860,7 @@ class Buttons {
 			'surfingbird'     => '#6dd3ff',
 			'telegram'        => '#0088cc',
 			'tencentqq'       => '#5790F7',
+			'threads'         => '#000000',
 			'threema'         => '#000000',
 			'tiktok'          => '#25F4EE',
 			'trello'          => '#0D63DE',
@@ -918,6 +920,7 @@ class Buttons {
 	) {
 		$share_urls = array(
 			'blogger'         => "https://www.blogger.com/blog-this.g?n={$title}&t={$description}&u={$share_url}",
+			'bluesky'         => "https://bsky.app/intent/compose?text={$title} | {$share_url}",
 			'buffer'          => "https://buffer.com/add?text={$title}&url={$share_url}",
 			'diaspora'        => "https://share.diasporafoundation.org/?title={$title}&url={$share_url}",
 			'delicious'       => "https://del.icio.us/save?provider=sharethis&title={$title}&url={$share_url}&v=5",
@@ -958,6 +961,7 @@ class Buttons {
 			'telegram'        => "https://t.me/share/url?url={$share_url}&text={$title}&to=",
 			'stumbleupon'     => "http://www.stumbleupon.com/submit?url={$share_url}&title={$title}",
 			'tencentqq'       => "https://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url={$share_url}&title={$title}&summary={$share_url}&desc={$description}&pics={$image}",
+			'threads'         => "https://threads.net/intent/post?text={$share_url}",
 			'threema'         => "threema://compose?text={$share_url}&id=",
 			'trello'          => "https://trello.com/add-card?mode={$popup}&url={$share_url}&desc={$description}",
 			'tumblr'          => "https://www.tumblr.com/share?t={$title}&u={$share_url}&v=3",
@@ -976,6 +980,7 @@ class Buttons {
 		if (wp_is_mobile()) {
 			$share_urls['whatsapp'] = "whatsapp://send?text={$share_url}";
 			$share_urls['messenger'] = "fb-messenger://share/?link={$share_url}&app_id=291494419107518";
+			$share_urls['threads'] = "barcelona://create?text={$share_url}";
 		}
 
 		return isset( $share_urls[ $button ] ) ? $share_urls[ $button ] : '';

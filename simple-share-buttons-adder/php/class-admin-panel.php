@@ -1838,7 +1838,7 @@ class Admin_Panel {
 		if (
 			false === in_array(
 				$button_name,
-				array( 'Line', 'Skype', 'Snapchat', 'Telegram', 'Weibo' ),
+				array( 'Threads','Bluesky','Line', 'Skype', 'Snapchat', 'Telegram', 'Weibo' ),
 				true
 			)
 		) {
