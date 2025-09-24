@@ -86,7 +86,7 @@ class Admin_Bits {
 					<a style="text-decoration: underline;" href="http://simplesharebuttons.com/privacy" target="_blank">
 						<?php esc_html_e( 'terms and privacy policy', 'simple-share-button-adder' ); ?>
 					</a>.
-					<a href="options-general.php?page=simple-share-buttons-adder&accept-terms=Y">
+					<a href="options-general.php?page=simple-share-buttons-adder&accept-terms=Y&nonce=<?php echo wp_create_nonce('accept-sharethis-terms'); ?>">
 						<span class="button button-primary">
 							<?php echo esc_html__( 'I accept', 'simple-share-buttons-adder' ); ?>
 						</span>
@@ -225,9 +225,10 @@ class Admin_Bits {
 			$arr_settings = $this->class_ssba->get_ssba_settings();
 
 			$accept_terms = filter_input( INPUT_GET, 'accept-terms', FILTER_UNSAFE_RAW );
+			$nonce = filter_input( INPUT_GET, 'nonce', FILTER_UNSAFE_RAW );
 
 			// If user is accepting terms.
-			if ( 'Y' === $accept_terms ) {
+			if ( 'Y' === $accept_terms && false !== wp_verify_nonce( $nonce, 'accept-sharethis-terms' ) ) {
 				// Save acceptance.
 				$this->class_ssba->ssba_update_options(
 					array(

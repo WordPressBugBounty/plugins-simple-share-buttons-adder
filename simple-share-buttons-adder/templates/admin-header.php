@@ -10,10 +10,10 @@
 use SimpleShareButtonsAdder\Admin_Bits;
 
 $accept_terms = filter_input( INPUT_GET, 'accept-terms', FILTER_UNSAFE_RAW );
-
+$nonce        = filter_input( INPUT_GET, 'nonce', FILTER_UNSAFE_RAW );
 $arr_settings = get_option( 'ssba_settings' );
 $accepted     = isset( $arr_settings['accepted_sharethis_terms'] ) ? $arr_settings['accepted_sharethis_terms'] : '';
-$accepted     = 'Y' === $accepted || 'Y' === $accept_terms ? 'true' : 'false';
+$accepted     = 'Y' === $accepted || ( 'Y' === $accept_terms && false !== wp_verify_nonce( $nonce, 'accept-sharethis-terms' ) ) ? 'true' : 'false';
 
 // If terms not accepted, show the notice.
 if ( 'false' === $accepted ) {

@@ -14,6 +14,7 @@ $bar          = isset( $selected_tab ) && 'bar' === $selected_tab ? 'active' : '
 $gdpr         = isset( $selected_tab ) && 'gdpr' === $selected_tab ? 'active' : '';
 
 $accept_terms = filter_input( INPUT_GET, 'accept-terms', FILTER_UNSAFE_RAW );
+$nonce        = filter_input( INPUT_GET, 'nonce', FILTER_UNSAFE_RAW );
 $accept_terms = sanitize_text_field( wp_unslash( $accept_terms ) );
 
 echo $this->admin_header(); // phpcs:ignore
