@@ -9,6 +9,10 @@
  * @package SimpleShareButtonsAdder
  */
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
+$allowed_svg = $this->getAllowedSvgTags();
+
 ?>
 <div class="tab-pane fade <?php echo 'active' === $bar ? esc_attr( $bar . ' in' ) : ''; ?>" id="share-bar">
 	<div class="col-sm-12 ssba-tab-container">
@@ -35,10 +39,10 @@
 						);
 
 						echo
-							$this->get_available_ssba(
+							wp_kses($this->get_available_ssba(
 								$arr_settings['ssba_selected_bar_buttons'],
 								$arr_settings
-						);
+						), $allowed_svg);
 						?>
 					</ul>
 				</div>
@@ -50,7 +54,7 @@
 				<div class="ssbp-wrap ssbp--centred ssbp--theme-4">
 					<div class="ssbp-container">
 						<ul id="ssbasort4" class="ssba-include-list ssbp-list ssbaSortable">
-							<?php echo $this->get_selected_ssba( $arr_settings['ssba_selected_bar_buttons'], $arr_settings ); ?>
+							<?php echo wp_kses($this->get_selected_ssba( $arr_settings['ssba_selected_bar_buttons'], $arr_settings ), $allowed_svg); ?>
 						</ul>
 					</div>
 				</div>

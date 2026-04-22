@@ -65,6 +65,67 @@ class Admin_Panel {
 		$this->widget_class     = $widget_class;
 	}
 
+	public function getAllowedSvgTags() {
+		$allowed = wp_kses_allowed_html( 'post' );
+
+		$allowed['svg'] = [
+			'xmlns'           => true,
+			'viewbox'         => true,
+			'width'           => true,
+			'height'          => true,
+			'fill'            => true,
+			'aria-hidden'     => true,
+			'role'            => true,
+			'focusable'       => true,
+			'class'           => true,
+			'style'           => true,
+		];
+
+		$allowed['path'] = [
+			'd'               => true,
+			'fill'            => true,
+			'fill-rule'       => true,
+			'clip-rule'       => true,
+			'stroke'          => true,
+			'stroke-width'    => true,
+			'stroke-linecap'  => true,
+			'stroke-linejoin' => true,
+			'class'           => true,
+			'style'           => true,
+		];
+
+		$allowed['circle'] = [
+			'cx'              => true,
+			'cy'              => true,
+			'r'               => true,
+			'fill'            => true,
+			'stroke'          => true,
+			'stroke-width'    => true,
+			'class'           => true,
+			'style'           => true,
+		];
+
+		$allowed['rect'] = [
+			'x'               => true,
+			'y'               => true,
+			'width'           => true,
+			'height'          => true,
+			'rx'              => true,
+			'ry'              => true,
+			'fill'            => true,
+			'class'           => true,
+			'style'           => true,
+		];
+
+		$allowed['use'] = [
+			'xlink:href'      => true,
+			'href'            => true,
+			'class'           => true,
+		];
+
+		return $allowed;
+	}
+
 	/**
 	 * Display the admin header.
 	 */

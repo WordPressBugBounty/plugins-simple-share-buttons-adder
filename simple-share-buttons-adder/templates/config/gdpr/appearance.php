@@ -5,6 +5,8 @@
  * @package SimpleShareButtonsAdder
  */
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 // Get GDPR Config.
 $ssba_settings = get_option( 'ssba_settings', true );
 $gdpr_config   = true === isset( $ssba_settings['ssba_gdpr_config'] ) ? $ssba_settings['ssba_gdpr_config'] : array();

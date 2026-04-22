@@ -7,6 +7,10 @@
  * @package SimpleShareButtonsAdder
  */
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
+$allowed_svg = $this->getAllowedSvgTags();
+
 ?>
 <div class="tab-pane fade <?php echo 'active' === $modern ? esc_attr( $modern . ' in' ) : ''; ?>" id="plus-share-buttons">
 	<div class="col-sm-12 ssba-tab-container">
@@ -14,7 +18,7 @@
 
 		<blockquote>
 			<p>
-				<?php echo esc_html__( 'Modern Share Buttons are CSS-based and allow for Button, Icon, and Icon Hover color customization. You can use our predefined CSS themes or your own custom CSS.' ); ?>
+				<?php echo esc_html__( 'Modern Share Buttons are CSS-based and allow for Button, Icon, and Icon Hover color customization. You can use our predefined CSS themes or your own custom CSS.', 'simple-share-buttons-adder' ); ?>
 			</p>
 		</blockquote>
 
@@ -87,10 +91,10 @@
 					<ul id="ssbasort5" class="ssbp-list ssbaSortable">
 						<?php
 						echo
-							$this->get_available_ssba(
+							wp_kses($this->get_available_ssba(
 								$arr_settings['ssba_selected_plus_buttons'],
 								$arr_settings
-						);
+						), $allowed_svg);
 						?>
 					</ul>
 				</div>
@@ -111,10 +115,10 @@
 					<ul id="ssbasort6" class="ssba-include-list ssbp-list ssbaSortable">
 						<?php
 						echo
-							$this->get_selected_ssba(
+							wp_kses($this->get_selected_ssba(
 								$arr_settings['ssba_selected_plus_buttons'],
 								$arr_settings
-						);
+						), $allowed_svg);
 						?>
 					</ul>
 				</div>

@@ -7,6 +7,8 @@
 
 namespace SimpleShareButtonsAdder;
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 /**
  * Styles Class
  *

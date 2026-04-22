@@ -5,6 +5,8 @@
  * @package SimpleShareButtonsAdder
  */
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 ?>
 <h2 style="text-decoration: underline;">
 	<?php esc_html_e( 'Check out our new GDPR Compliance Tool!', 'simple-share-buttons-adder' ); ?>

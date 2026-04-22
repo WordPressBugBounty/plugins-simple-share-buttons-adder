@@ -22,7 +22,7 @@ class Widget extends \WP_Widget {
 			'ssba_widget', // Base ID.
 			'Share Buttons', // Name.
 			array(
-				'description' => __( 'Simple Share Buttons Adder', 'text_domain' ),
+				'description' => esc_html( 'Simple Share Buttons Adder'),
 			)
 		);
 	}

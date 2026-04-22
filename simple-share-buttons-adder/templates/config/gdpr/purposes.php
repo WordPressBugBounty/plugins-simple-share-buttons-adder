@@ -5,6 +5,8 @@
  * @package SimpleShareButtonsAdder
  */
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 ?>
 <label>
 	<?php echo esc_html__( 'WHY ARE YOU COLLECTING CUSTOMER DATA?', 'simple-share-buttons-adder' ); ?>

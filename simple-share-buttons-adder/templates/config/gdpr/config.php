@@ -5,10 +5,12 @@
  * @package SimpleShareButtonsAdder
  */
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 // User type options.
 $user_types = array(
-	'eu'     => esc_html__( 'Only visitors in the EU', 'sharethis-custom' ),
-	'always' => esc_html__( 'All visitors globally', 'sharethis-custom' ),
+	'eu'     => esc_html__( 'Only visitors in the EU', 'simple-share-buttons-adder' ),
+	'always' => esc_html__( 'All visitors globally', 'simple-share-buttons-adder' ),
 );
 
 $languages = array(
@@ -34,7 +36,7 @@ $gdpr_language  = false === empty( $gdpr_config['language'] ) ? $gdpr_config['la
 		<?php
 		echo esc_html__(
 			'PUBLISHER NAME * (this will be displayed in the consent tool)',
-			'sharethis-share-buttons'
+			'simple-share-buttons-adder'
 		);
 		?>
 	</label>
@@ -45,7 +47,7 @@ $gdpr_language  = false === empty( $gdpr_config['language'] ) ? $gdpr_config['la
 		<?php
 		echo esc_html__(
 			'WHICH USERS SHOULD BE ASKED FOR CONSENT?',
-			'sharethis-share-buttons'
+			'simple-share-buttons-adder'
 		);
 		?>
 	</label>
@@ -59,7 +61,7 @@ $gdpr_language  = false === empty( $gdpr_config['language'] ) ? $gdpr_config['la
 		</select>
 	</div>
 	<label class="control-label">
-		<?php echo esc_html__( 'SELECT LANGUAGE', 'sharethis-share-buttons' ); ?>
+		<?php echo esc_html__( 'SELECT LANGUAGE', 'simple-share-buttons-adder' ); ?>
 	</label>
 	<div class="input-div">
 		<select id="st-language">

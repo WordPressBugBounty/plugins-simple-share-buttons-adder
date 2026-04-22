@@ -84,9 +84,9 @@ class Admin_Bits {
 					);
 					?>
 					<a style="text-decoration: underline;" href="http://simplesharebuttons.com/privacy" target="_blank">
-						<?php esc_html_e( 'terms and privacy policy', 'simple-share-button-adder' ); ?>
+						<?php esc_html_e( 'terms and privacy policy', 'simple-share-buttons-adder' ); ?>
 					</a>.
-					<a href="options-general.php?page=simple-share-buttons-adder&accept-terms=Y&nonce=<?php echo wp_create_nonce('accept-sharethis-terms'); ?>">
+					<a href="options-general.php?page=simple-share-buttons-adder&accept-terms=Y&nonce=<?php echo esc_html(wp_create_nonce('accept-sharethis-terms')); ?>">
 						<span class="button button-primary">
 							<?php echo esc_html__( 'I accept', 'simple-share-buttons-adder' ); ?>
 						</span>

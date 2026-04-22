@@ -7,6 +7,8 @@
  * @package SimpleShareButtonsAdder
  */
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 $selected_tab = get_option( 'ssba_selected_tab' );
 $selected_tab = null !== $selected_tab && false !== $selected_tab ? $selected_tab : 'modern';
 $modern       = isset( $selected_tab ) && false === in_array( $selected_tab, array( 'bar', 'gdpr' ), true ) ? 'active' : '';

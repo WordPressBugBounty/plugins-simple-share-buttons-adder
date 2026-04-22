@@ -1,10 +1,10 @@
 === Simple Share Buttons Adder ===
 Contributors: sharethis, scottstorebloom, scottmweaver
-Tags: share buttons, bluesky, threads, social buttons, facebook, twitter, google+, share, share links, stumble upon, linkedin, pinterest, yummly, vk, flattr, viber
+Tags: share buttons, bluesky, social buttons, share, share links
 Requires at least: 5.9
-Tested up to: 6.8.2
-Stable tag: 8.5.3
-Version: 8.5.3
+Tested up to: 6.9
+Stable tag: 8.5.4
+Version: 8.5.4
 License: GPLv2 or later
 
 A simple plugin that enables you to add share buttons to all of your posts and/or pages.
@@ -66,6 +66,11 @@ Please visit the <a href="https://wordpress.org/support/plugin/simple-share-butt
 4. An example of the buttons shown below page content using the "Ribbon" theme.
 
 == Changelog ==
+
+= 8.5.4 =
+* Test 6.9
+* Fix text domain error.
+* Escape variables.
 
 = 8.5.3 =
 * Tested with WP ver 6.8.2.

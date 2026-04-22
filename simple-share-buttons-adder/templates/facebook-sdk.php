@@ -7,6 +7,8 @@
  * @package SimpleShareButtonsAdder
  */
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 $args = false === empty( $args ) ? $args : array();
 
 $data = wp_parse_args(

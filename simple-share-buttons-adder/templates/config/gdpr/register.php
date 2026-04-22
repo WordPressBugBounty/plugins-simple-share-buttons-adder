@@ -5,9 +5,11 @@
  * @package SimpleShareButtonsAdder
  */
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 ?>
 <h3>
-	<?php echo esc_html__( 'Create an account', 'sharethis-custom' ); ?>
+	<?php echo esc_html__( 'Create an account', 'simple-share-buttons-adder' ); ?>
 </h3>
 
 <div class="sharethis-account-creation">
@@ -22,13 +24,13 @@
 		<div style="margin: 20px 0 50px;" class="item gdpr-check">
 			<input id="email-enabled" type="checkbox"/>
 			<label class="gdpr">
-				<?php echo esc_html__( 'Subscribe to our monthly newsletter for tips and trends to grow your site.', 'sharethis-custom' ); ?>
+				<?php echo esc_html__( 'Subscribe to our monthly newsletter for tips and trends to grow your site.', 'simple-share-buttons-adder' ); ?>
 			</label>
 		</div>
 	</div>
 	<div class="sharethis-login-message">
 		<p style="font-size:.9rem;">
-			<?php echo esc_html__( 'By clicking "Register," you certify that you are agreeing to our', 'sharethis-custom' ); ?>
+			<?php echo esc_html__( 'By clicking "Register," you certify that you are agreeing to our', 'simple-share-buttons-adder' ); ?>
 			<a href="/privacy/" target="_blank" rel="nofollow">
 				<?php esc_html_e( 'Privacy Policy', 'simple-share-buttons-adder' ); ?></a>
 			<?php esc_html_e( 'and', 'simple-share-buttons-adder' ); ?> <a
@@ -39,6 +41,6 @@
 	</div>
 
 	<a class="create-account st-rc-link medium-btn" href="#">
-		<?php esc_html_e( 'Register', 'sharethis' ); ?>
+		<?php esc_html_e( 'Register', 'simple-share-buttons-adder' ); ?>
 	</a>
 </div>

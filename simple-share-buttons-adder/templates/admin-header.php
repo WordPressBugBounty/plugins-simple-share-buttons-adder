@@ -7,6 +7,8 @@
  * @package SimpleShareButtonsAdder
  */
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 use SimpleShareButtonsAdder\Admin_Bits;
 
 $accept_terms = filter_input( INPUT_GET, 'accept-terms', FILTER_UNSAFE_RAW );

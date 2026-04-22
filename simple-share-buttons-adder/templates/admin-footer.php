@@ -7,6 +7,8 @@
  * @package SimpleShareButtonsAdder
  */
 
+if ( ! defined( 'ABSPATH' ) ) exit;
+
 ?>
 	</div>
 	<?php if ( true === empty( get_option( 'ssba-hide-review' ) ) ) : ?>
