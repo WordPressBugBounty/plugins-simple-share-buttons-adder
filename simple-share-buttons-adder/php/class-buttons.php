@@ -587,6 +587,30 @@ class Buttons {
 	 * @return string
 	 */
 	public function get_button( $arr_settings, $url_current_page, $str_page_title, $boo_show_share_count, $button_name, $button_type = 'plus' ) {
+		// Ensure every referenced setting key exists to avoid PHP 8.2+ "undefined array key" warnings.
+		$arr_settings = wp_parse_args(
+			$arr_settings,
+			array(
+				'ssba_plus_rel_nofollow'             => '',
+				'ssba_bar_rel_nofollow'              => '',
+				'ssba_new_buttons'                   => '',
+				'ssba_bar_buttons'                   => '',
+				'ssba_plus_share_new_window'         => '',
+				'ssba_share_new_window'              => '',
+				'ssba_bar_share_new_window'          => '',
+				'ssba_plus_button_color'             => '',
+				"ssba_{$button_type}_button_color"   => '',
+				'ssba_plus_height'                   => '',
+				'ssba_plus_width'                    => '',
+				'ssba_image_set'                     => '',
+				'ssba_size'                          => '',
+				"ssba_custom_{$button_name}"         => '',
+				'ssba_show_share_count'              => '',
+				'ssba_plus_show_share_count'         => '',
+				'ssba_bar_show_share_count'          => '',
+			)
+		);
+
 		$nofollow  = ( 'Y' === $arr_settings['ssba_plus_rel_nofollow']
 						   && 'Y' === $arr_settings['ssba_new_buttons']
 						   && ! isset(
