@@ -47,4 +47,22 @@ class Util {
 
 		return $parsed_args;
 	}
+
+	/**
+	 * Get all registered public custom post types.
+	 *
+	 * These are post types that behave like posts/pages on the front end,
+	 * so they can be offered as share button locations.
+	 *
+	 * @return \WP_Post_Type[] Custom post type objects keyed by post type name.
+	 */
+	public static function get_custom_post_types() {
+		return get_post_types(
+			array(
+				'public'   => true,
+				'_builtin' => false,
+			),
+			'objects'
+		);
+	}
 }

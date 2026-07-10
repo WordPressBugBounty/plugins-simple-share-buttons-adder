@@ -128,6 +128,10 @@ class Buttons {
 			return $content;
 		}
 
+		// Whether the current view is a custom post type enabled in the locations list.
+		$cpt_setting = 'Y' === $arr_settings['ssba_new_buttons'] ? 'ssba_plus_cpt_' . get_post_type() : 'ssba_cpt_' . get_post_type();
+		$cpt_enabled = is_singular() && ! is_page() && isset( $arr_settings[ $cpt_setting ] ) && 'Y' === $arr_settings[ $cpt_setting ];
+
 		// Placement on pages/posts/categories/archives/homepage.
 		if ( (
 			false === is_home() &&
@@ -200,6 +204,8 @@ class Buttons {
 						 true === $this->class_ssba->is_enabled_on_excerpts()
 				 )
 			 )
+			||
+			$cpt_enabled
 			||
 			$boo_shortcode
 		) {
@@ -344,6 +350,8 @@ class Buttons {
 			( is_archive() && isset( $arr_settings['ssba_bar_cats_archs'] ) && 'Y' === $arr_settings['ssba_bar_cats_archs'] )
 			||
 			( ( is_home() || is_front_page() ) && isset( $arr_settings['ssba_bar_homepage'] ) && 'Y' === $arr_settings['ssba_bar_homepage'] )
+			||
+			( is_singular() && ! is_page() && isset( $arr_settings[ 'ssba_bar_cpt_' . get_post_type() ] ) && 'Y' === $arr_settings[ 'ssba_bar_cpt_' . get_post_type() ] )
 		) {
 
 			if ( ! wp_style_is( ASSET_PREFIX . "-ssba", 'enqueued' ) ) {

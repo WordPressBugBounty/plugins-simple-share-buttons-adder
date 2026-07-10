@@ -311,7 +311,7 @@ class Styles {
 				esc_html( $plus_button_hover ) . '
 					}
 
-					.ssbp-list li a svg, .ssbp-list li a.ssbp-douban span:not(.color-icon) svg, .ssbp-list li a svg path, .ssbp-list li a.ssbp-surfingbird span:not(.color-icon) svg polygon {' .
+					.ssbp-list li a svg, .ssbp-list li a.ssbp-douban span:not(.color-icon) svg, .ssbp-list li a svg path:not([fill="none"]), .ssbp-list li a.ssbp-surfingbird span:not(.color-icon) svg polygon {' .
 				esc_html( $plus_icon ) .
 				esc_html( $plus_icon_color ) .
 				'}
@@ -365,12 +365,12 @@ class Styles {
 				}
 
 				#ssba-bar-2 .ssbp-bar-list li a svg,
-				 #ssba-bar-2 .ssbp-bar-list li a svg path, .ssbp-bar-list li a.ssbp-surfingbird span:not(.color-icon) svg polygon {' .
+				 #ssba-bar-2 .ssbp-bar-list li a svg path:not([fill="none"]), .ssbp-bar-list li a.ssbp-surfingbird span:not(.color-icon) svg polygon {' .
 								esc_html( $bar_icon ) .
 								esc_html( $bar_icon_color ) .
 								'}
 				#ssba-bar-2 .ssbp-bar-list li a:hover svg,
-				 #ssba-bar-2 .ssbp-bar-list li a:hover svg path, .ssbp-bar-list li a.ssbp-surfingbird span:not(.color-icon) svg polygon {' .
+				 #ssba-bar-2 .ssbp-bar-list li a:hover svg path:not([fill="none"]), .ssbp-bar-list li a.ssbp-surfingbird span:not(.color-icon) svg polygon {' .
 								esc_html( $bar_icon_hover ) .
 								'}
 				#ssba-bar-2 .ssbp-bar-list li {

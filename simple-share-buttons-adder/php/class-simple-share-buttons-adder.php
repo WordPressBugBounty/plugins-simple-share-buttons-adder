@@ -289,7 +289,11 @@ class Simple_Share_Buttons_Adder {
 	 * @return int
 	 */
 	public function get_content_priority() {
-		return (int) $this->get_ssba_setting( 'content_priority', 10, false );
+		$priority = $this->get_ssba_setting( 'content_priority', 10, false );
+
+		// Guard against corrupt values (e.g. 'N'), which cast to priority 0
+		// and run the buttons through wpautop, mangling the SVG markup.
+		return is_numeric( $priority ) ? (int) $priority : 10;
 	}
 
 	/* Share Bar */

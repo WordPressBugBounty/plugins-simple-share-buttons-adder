@@ -3,8 +3,8 @@ Contributors: sharethis, scottstorebloom, scottmweaver
 Tags: share buttons, bluesky, social buttons, share, share links
 Requires at least: 5.9
 Tested up to: 7.0
-Stable tag: 8.5.6
-Version: 8.5.6
+Stable tag: 8.6.0
+Version: 8.6.0
 License: GPLv2 or later
 
 A simple plugin that enables you to add share buttons to all of your posts and/or pages.
@@ -66,6 +66,13 @@ Please visit the <a href="https://wordpress.org/support/plugin/simple-share-butt
 4. An example of the buttons shown below page content using the "Ribbon" theme.
 
 == Changelog ==
+
+= 8.6.0 =
+* Add public custom post types to the location lists for classic, modern, and share bar buttons.
+* Fix custom icon color filling some SVG icons in as solid squares.
+* Fix black/colored icons in the modern and share bar network lists by allowing full SVG markup through sanitization.
+* Fix share buttons rendering twice/broken when the content priority setting was corrupted.
+* Update the Gutenberg block to Block API v3 and fix the block script enqueue for subdirectory installs.
 
 = 8.5.6 =
 * Fix PHP 8.2+ "undefined array key" warnings in get_button() by defaulting all referenced settings keys.

@@ -475,7 +475,7 @@ class Admin_Bits {
 				'ssba_rel_nofollow'            => ( isset( $ssba_post['ssba_rel_nofollow'] ) ? $ssba_post['ssba_rel_nofollow'] : 'N' ),
 				'ssba_default_pinterest'       => ( isset( $ssba_post['ssba_default_pinterest'] ) ? $ssba_post['ssba_default_pinterest'] : 'N' ),
 				'ssba_pinterest_featured'      => ( isset( $ssba_post['ssba_pinterest_featured'] ) ? $ssba_post['ssba_pinterest_featured'] : 'N' ),
-				'ssba_content_priority'        => ( isset( $ssba_post['ssba_content_priority'] ) ? $ssba_post['ssba_content_priority'] : 'N' ),
+				'ssba_content_priority'        => ( isset( $ssba_post['ssba_content_priority'] ) && is_numeric( $ssba_post['ssba_content_priority'] ) ? $ssba_post['ssba_content_priority'] : '10' ),
 				'ssba_plus_additional_css'     => esc_html( $ssba_post['ssba_plus_additional_css'] ),
 				'ssba_plus_email_message'      => stripslashes_deep( $ssba_post['ssba_plus_email_message'] ),
 				'ssba_plus_twitter_text'       => stripslashes_deep( $ssba_post['ssba_plus_twitter_text'] ),
@@ -592,6 +592,14 @@ class Admin_Bits {
 				'bar_facebook_app_id'          => $ssba_post['bar_facebook_app_id'],
 				'ssba_gdpr_config'             => $gdpr_config,
 			);
+
+			// Location settings for public custom post types.
+			foreach ( Util::get_custom_post_types() as $post_type ) {
+				foreach ( array( 'ssba_cpt_', 'ssba_plus_cpt_', 'ssba_bar_cpt_' ) as $option_prefix ) {
+					$cpt_key                 = $option_prefix . $post_type->name;
+					$arr_options[ $cpt_key ] = isset( $ssba_post[ $cpt_key ] ) ? $ssba_post[ $cpt_key ] : 'N';
+				}
+			}
 
 			// Save the settings.
 			$this->class_ssba->ssba_update_options( $arr_options );

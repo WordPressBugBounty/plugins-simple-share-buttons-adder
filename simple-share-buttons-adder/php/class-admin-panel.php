@@ -69,35 +69,156 @@ class Admin_Panel {
 		$allowed = wp_kses_allowed_html( 'post' );
 
 		$allowed['svg'] = [
-			'xmlns'           => true,
-			'viewbox'         => true,
-			'width'           => true,
-			'height'          => true,
+			'xmlns'               => true,
+			'xmlns:xlink'         => true,
+			'xmlns:svg'           => true,
+			'viewbox'             => true,
+			'width'               => true,
+			'height'              => true,
+			'x'                   => true,
+			'y'                   => true,
+			'fill'                => true,
+			'fill-rule'           => true,
+			'clip-rule'           => true,
+			'stroke-linejoin'     => true,
+			'stroke-miterlimit'   => true,
+			'version'             => true,
+			'preserveaspectratio' => true,
+			'xml:space'           => true,
+			'id'                  => true,
+			'aria-hidden'         => true,
+			'role'                => true,
+			'focusable'           => true,
+			'class'               => true,
+			'style'               => true,
+		];
+
+		$allowed['path'] = [
+			'd'                 => true,
+			'xmlns'             => true,
+			'fill'              => true,
+			'fill-rule'         => true,
+			'clip-rule'         => true,
+			'stroke'            => true,
+			'stroke-width'      => true,
+			'stroke-linecap'    => true,
+			'stroke-linejoin'   => true,
+			'stroke-miterlimit' => true,
+			'transform'         => true,
+			'id'                => true,
+			'class'             => true,
+			'style'             => true,
+		];
+
+		$allowed['g'] = [
+			'fill'              => true,
+			'fill-rule'         => true,
+			'transform'         => true,
+			'clip-path'         => true,
+			'filter'            => true,
+			'id'                => true,
+			'stroke'            => true,
+			'stroke-width'      => true,
+			'stroke-linecap'    => true,
+			'stroke-linejoin'   => true,
+			'stroke-miterlimit' => true,
+			'stroke-dasharray'  => true,
+			'stroke-dashoffset' => true,
+			'font-family'       => true,
+			'font-weight'       => true,
+			'font-size'         => true,
+			'text-anchor'       => true,
+			'class'             => true,
+			'style'             => true,
+		];
+
+		$allowed['polygon'] = [
+			'points'          => true,
 			'fill'            => true,
-			'aria-hidden'     => true,
-			'role'            => true,
-			'focusable'       => true,
+			'fill-rule'       => true,
+			'transform'       => true,
+			'id'              => true,
 			'class'           => true,
 			'style'           => true,
 		];
 
-		$allowed['path'] = [
-			'd'               => true,
+		$allowed['polyline'] = [
+			'points'          => true,
 			'fill'            => true,
-			'fill-rule'       => true,
-			'clip-rule'       => true,
 			'stroke'          => true,
-			'stroke-width'    => true,
-			'stroke-linecap'  => true,
-			'stroke-linejoin' => true,
 			'class'           => true,
 			'style'           => true,
 		];
+
+		$allowed['defs'] = [
+			'id'              => true,
+		];
+
+		$allowed['clippath'] = [
+			'id'              => true,
+		];
+
+		$allowed['lineargradient'] = [
+			'id'              => true,
+			'x1'              => true,
+			'y1'              => true,
+			'x2'              => true,
+			'y2'              => true,
+			'gradientunits'   => true,
+		];
+
+		$allowed['stop'] = [
+			'offset'          => true,
+			'stop-color'      => true,
+			'stop-opacity'    => true,
+		];
+
+		$allowed['filter'] = [
+			'id'              => true,
+			'x'               => true,
+			'y'               => true,
+			'width'           => true,
+			'height'          => true,
+			'filterunits'     => true,
+		];
+
+		$allowed['fecolormatrix'] = [
+			'in'              => true,
+			'result'          => true,
+			'type'            => true,
+			'values'          => true,
+		];
+
+		$allowed['fegaussianblur'] = [
+			'in'              => true,
+			'result'          => true,
+			'stddeviation'    => true,
+		];
+
+		$allowed['feoffset'] = [
+			'dx'              => true,
+			'dy'              => true,
+			'in'              => true,
+			'result'          => true,
+		];
+
+		$allowed['femerge'] = [];
+
+		$allowed['femergenode'] = [
+			'in'              => true,
+		];
+
+		$allowed['style'] = [
+			'type'            => true,
+		];
+
+		$allowed['title'] = [];
 
 		$allowed['circle'] = [
 			'cx'              => true,
 			'cy'              => true,
 			'r'               => true,
+			'transform'       => true,
 			'fill'            => true,
 			'stroke'          => true,
 			'stroke-width'    => true,
@@ -120,10 +241,38 @@ class Admin_Panel {
 		$allowed['use'] = [
 			'xlink:href'      => true,
 			'href'            => true,
+			'fill'            => true,
+			'fill-rule'       => true,
 			'class'           => true,
 		];
 
 		return $allowed;
+	}
+
+	/**
+	 * Allow SVG presentation properties in inline styles for wp_kses.
+	 *
+	 * @param string[] $attr Allowed CSS properties.
+	 *
+	 * @return string[]
+	 *
+	 * @filter safe_style_css
+	 */
+	public function allow_svg_style_properties( $attr ) {
+		return array_merge(
+			$attr,
+			array(
+				'fill',
+				'fill-opacity',
+				'fill-rule',
+				'stroke',
+				'stroke-width',
+				'stroke-opacity',
+				'stroke-linecap',
+				'stroke-linejoin',
+				'mix-blend-mode',
+			)
+		);
 	}
 
 	/**
@@ -154,9 +303,9 @@ class Admin_Panel {
 
 		wp_enqueue_script(
 			ASSET_PREFIX . "-blocks",
-			"/wp-content/plugins/simple-share-buttons-adder/js/blocks.js",
-			array( 'wp-blocks', 'wp-editor', 'wp-element', 'wp-components' ),
-			time(),
+			plugins_url( 'js/blocks.js', SSBA_FILE ),
+			array( 'wp-blocks', 'wp-element', 'wp-block-editor' ),
+			filemtime( DIR_PATH . "js/blocks.js" ),
 			true
 		);
 	}
@@ -164,12 +313,12 @@ class Admin_Panel {
 	/**
 	 * Register new block category for share buttons.
 	 *
-	 * @param array[]  $categories Array of categories for block types.
-	 * @param \WP_Post $post       Post being loaded.
+	 * @param array[]                  $categories Array of categories for block types.
+	 * @param \WP_Block_Editor_Context $context    The current block editor context.
 	 *
 	 * @filter block_categories_all, 999
 	 */
-	public function simpleshare_block_category( $categories, $post ) {
+	public function simpleshare_block_category( $categories, $context ) {
 		return array_merge(
 			$categories,
 			array(
@@ -255,6 +404,26 @@ class Admin_Panel {
 				'checked' => isset( $arr_settings['ssba_plus_cats_archs'] ) && 'Y' === $arr_settings['ssba_plus_cats_archs'] ? true : false,
 			),
 		);
+
+		// Add public custom post types to each location list.
+		foreach ( Util::get_custom_post_types() as $post_type ) {
+			$label = $post_type->labels->name;
+
+			$locs[ $label ] = array(
+				'value'   => 'ssba_cpt_' . $post_type->name,
+				'checked' => isset( $arr_settings[ 'ssba_cpt_' . $post_type->name ] ) && 'Y' === $arr_settings[ 'ssba_cpt_' . $post_type->name ] ? true : false,
+			);
+
+			$locs2[ $label ] = array(
+				'value'   => 'ssba_bar_cpt_' . $post_type->name,
+				'checked' => isset( $arr_settings[ 'ssba_bar_cpt_' . $post_type->name ] ) && 'Y' === $arr_settings[ 'ssba_bar_cpt_' . $post_type->name ] ? true : false,
+			);
+
+			$locs3[ $label ] = array(
+				'value'   => 'ssba_plus_cpt_' . $post_type->name,
+				'checked' => isset( $arr_settings[ 'ssba_plus_cpt_' . $post_type->name ] ) && 'Y' === $arr_settings[ 'ssba_plus_cpt_' . $post_type->name ] ? true : false,
+			);
+		}
 
 		// Display options.
 		$display_loc = array(
