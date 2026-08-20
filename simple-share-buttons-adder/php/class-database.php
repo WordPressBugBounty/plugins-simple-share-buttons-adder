@@ -502,6 +502,24 @@ class Database {
 			'threads'      => array(
 				'full_name' => esc_html__( 'Threads', 'simple-share-buttons-adder' ),
 			),
+			'chatgpt'     => array(
+				'full_name' => esc_html__( 'ChatGPT', 'simple-share-buttons-adder' ),
+			),
+			'claude'      => array(
+				'full_name' => esc_html__( 'Claude', 'simple-share-buttons-adder' ),
+			),
+			'copilot'     => array(
+				'full_name' => esc_html__( 'Copilot', 'simple-share-buttons-adder' ),
+			),
+			'gemini'      => array(
+				'full_name' => esc_html__( 'Gemini', 'simple-share-buttons-adder' ),
+			),
+			'grok'        => array(
+				'full_name' => esc_html__( 'Grok', 'simple-share-buttons-adder' ),
+			),
+			'perplexity'  => array(
+				'full_name' => esc_html__( 'Perplexity', 'simple-share-buttons-adder' ),
+			),
 			'twitter'     => array(
 				'full_name' => esc_html__( 'Twitter', 'simple-share-buttons-adder' ),
 			),

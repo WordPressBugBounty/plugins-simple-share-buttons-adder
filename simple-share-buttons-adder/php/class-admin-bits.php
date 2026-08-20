@@ -69,7 +69,7 @@ class Admin_Bits {
 			<div id="sharethis_terms_notice" class="update-nag notice is-dismissible">
 				<p>
 					<?php esc_html_e( 'We\'ve updated our', 'simple-share-buttons-adder' ); ?>
-					<a style="text-decoration: underline;" href="http://simplesharebuttons.com/privacy" target="_blank">
+					<a style="text-decoration: underline;" href="https://sharethis.com/privacy" target="_blank">
 						<?php
 						echo esc_html__(
 							'privacy policy and terms of use ',
@@ -83,7 +83,7 @@ class Admin_Bits {
 						'simple-share-buttons-adder'
 					);
 					?>
-					<a style="text-decoration: underline;" href="http://simplesharebuttons.com/privacy" target="_blank">
+					<a style="text-decoration: underline;" href="https://sharethis.com/privacy" target="_blank">
 						<?php esc_html_e( 'terms and privacy policy', 'simple-share-buttons-adder' ); ?>
 					</a>.
 					<a href="options-general.php?page=simple-share-buttons-adder&accept-terms=Y&nonce=<?php echo esc_html(wp_create_nonce('accept-sharethis-terms')); ?>">

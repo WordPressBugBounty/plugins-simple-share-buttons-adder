@@ -3,12 +3,12 @@
  * Plugin Name: Simple Share Buttons Adder
  * Plugin URI: https://simplesharebuttons.com
  * Description: A simple plugin that enables you to add share buttons to all of your posts and/or pages.
- * Version: 8.6.0
+ * Version: 8.7.0
  * Author: Simple Share Buttons
  * Author URI: https://simplesharebuttons.com
  * License: GPLv2
 
-Copyright 2026 Simple Share Buttons admin@simplesharebuttons.com
+Copyright 2026 Simple Share Buttons support@sharethis.com
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License, version 2, as

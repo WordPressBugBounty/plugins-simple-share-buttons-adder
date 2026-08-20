@@ -2,9 +2,9 @@
 Contributors: sharethis, scottstorebloom, scottmweaver
 Tags: share buttons, bluesky, social buttons, share, share links
 Requires at least: 5.9
-Tested up to: 7.0
-Stable tag: 8.6.0
-Version: 8.6.0
+Tested up to: 7.1
+Stable tag: 8.7.0
+Version: 8.7.0
 License: GPLv2 or later
 
 A simple plugin that enables you to add share buttons to all of your posts and/or pages.
@@ -15,13 +15,13 @@ The Simple Share Buttons Adder does exactly what it says – adds share buttons 
 
 The new “Modern Share Buttons” tab are CSS-based settings which allow you more flexibility when it comes to customizing your Share Buttons, Icon and Icon Hover colors! You have the option to use our predefined CSS themes or your own custom CSS.
 
-This plugin has a dedicated website! Check out <a href="https://simplesharebuttons.com" target="_blank">simplesharebuttons.com</a>
+Share to AI assistants as well as social networks. ChatGPT, Claude, Copilot, Gemini, Grok and Perplexity are available in the network lists for the Modern Share Buttons and the Share Bar. Each one opens a new chat in a new tab, prefilled with a prompt asking the assistant to summarize the page being shared. Copilot and Gemini do not accept a prompt in a URL, so for those two the prompt is copied to the visitor's clipboard and a blank chat is opened for them to paste it into.
 
 You can even upload and use your own custom images if you wish!
 
 The Simple Share Buttons Adder utilizes features that, as a WordPress user, you will be familiar with. A self-explanatory administration screen will have you showing your Share Buttons on your posts and pages in no time!
 
-By downloading and installing this plugin you are agreeing to the <a href="https://simplesharebuttons.com/privacy/" target="_blank">Privacy Policy</a> and <a href="https://simplesharebuttons.com/privacy/" target="_blank">Terms of Service</a>.
+By downloading and installing this plugin you are agreeing to the <a href="https://sharethis.com/privacy/" target="_blank">Privacy Policy</a> and <a href="https://sharethis.com/publisher-terms-of-use/" target="_blank">Terms of Service</a>.
 
 == Installation ==
 
@@ -54,7 +54,9 @@ By downloading and installing this plugin you are agreeing to the <a href="https
 
 == Frequently Asked Questions ==
 
-This plugin has a dedicated website! Check out the <a href="http://simplesharebuttons.com/wordpress-faq/" target="_blank"> FAQs page</a>
+= Why do the Copilot and Gemini buttons copy something to my clipboard? =
+
+Neither Copilot nor Gemini supports passing a prompt in the URL, so the plugin copies the prompt for you and opens a blank chat. Paste it in and send. The other AI buttons carry the prompt in the URL, so nothing is copied for those.
 
 Please visit the <a href="https://wordpress.org/support/plugin/simple-share-buttons-adder">WordPress Support Forum</a> for any assistance you may need.
 
@@ -66,6 +68,11 @@ Please visit the <a href="https://wordpress.org/support/plugin/simple-share-butt
 4. An example of the buttons shown below page content using the "Ribbon" theme.
 
 == Changelog ==
+
+= 8.7.0 =
+* Add AI assistant share buttons: ChatGPT, Claude, Copilot, Gemini, Grok, Perplexity.
+  These open a chat prefilled with a prompt about the page in a new tab.
+  Copilot and Gemini copy the prompt to the clipboard, since neither accepts a prompt in a URL.
 
 = 8.6.0 =
 * Add public custom post types to the location lists for classic, modern, and share bar buttons.

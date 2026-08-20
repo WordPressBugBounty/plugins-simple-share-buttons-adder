@@ -55,11 +55,6 @@ if ( 'false' === $accepted ) {
 								<button class="btn btn-block btn-default"><?php echo esc_html__( 'Community support', 'simple-share-buttons-adder' ); ?></button>
 							</a>
 						</div>
-						<div class="col-sm-6">
-							<a href="https://simplesharebuttons.com/plus/?utm_source=adder&utm_medium=plugin_ad&utm_campaign=product&utm_content=support_modal" target="_blank">
-								<button class="btn btn-block btn-primary"><?php echo esc_html__( 'Check out Plus', 'simple-share-buttons-adder' ); ?></button>
-							</a>
-						</div>
 					</div>
 				</div>
 				<div class="modal-footer">

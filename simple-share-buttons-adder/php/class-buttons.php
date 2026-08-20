@@ -16,6 +16,12 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  */
 class Buttons {
 
+	/**
+	 * Instruction prefixed to the prompt sent to AI assistants.
+	 *
+	 * @var string
+	 */
+	const AI_PROMPT = 'Read this page and give me a short summary of the key points:';
 
 	/**
 	 * Plugin instance.
@@ -660,6 +666,11 @@ class Buttons {
 		$button_back   = $arr_settings['ssba_plus_button_color'] ? esc_attr( 'background: ' . $arr_settings[ "ssba_{$button_type}_button_color" ] . ';' ) : '';
 		$count_class   = 'Y' === $arr_settings['ssba_new_buttons'] || isset( $arr_settings['bar_call'] ) ? ' ssbp-each-share' : ' ssba_sharecount';
 
+		// Assistants that take no prompt in the URL get it here, for the clipboard.
+		$ai_prompt_attr = in_array( $button_name, self::get_ai_copy_buttons(), true )
+			? ' data-prompt="' . esc_attr( self::get_ai_prompt( $str_page_title, $url_current_page ) ) . '"'
+			: '';
+
 		$html_share_buttons = '';
 
 		// Add li if plus.
@@ -668,7 +679,7 @@ class Buttons {
 		}
 
 		// Share link.
-		$html_share_buttons .= '<a data-site="' . $button_name . '" class="ssba_' . $button_name . '_share ssba_share_link' . esc_attr( $plus_class ) . '" href="' . $network_url . '" ' . esc_attr( $target . $nofollow ) . ' style="color:' . esc_attr( $network_color ) . '; background-color: ' . esc_attr( $network_color ) . '; height: ' . esc_attr( $arr_settings['ssba_plus_height'] ) . 'px; width: ' . esc_attr( $arr_settings['ssba_plus_width'] ) . 'px; ' . $button_back . '" ' . $print . '>';
+		$html_share_buttons .= '<a data-site="' . $button_name . '"' . $ai_prompt_attr . ' class="ssba_' . $button_name . '_share ssba_share_link' . esc_attr( $plus_class ) . '" href="' . $network_url . '" ' . esc_attr( $target . $nofollow ) . ' style="color:' . esc_attr( $network_color ) . '; background-color: ' . esc_attr( $network_color ) . '; height: ' . esc_attr( $arr_settings['ssba_plus_height'] ) . 'px; width: ' . esc_attr( $arr_settings['ssba_plus_width'] ) . 'px; ' . $button_back . '" ' . $print . '>';
 
 		// If image set is not custom.
 		if ( 'custom' !== $arr_settings['ssba_image_set'] && 'Y' !== $arr_settings['ssba_new_buttons'] && ! isset( $arr_settings['bar_call'] ) ) {
@@ -847,6 +858,9 @@ class Buttons {
 			'blm'             => '#000000',
 			'bluesky'         => '#097AFE',
 			'buffer'          => '#323B43',
+			'chatgpt'         => '#000000',
+			'claude'          => '#D97757',
+			'copilot'         => '#0078D4',
 			'copy'            => '#14682B',
 			'delicious'       => '#205cc0',
 			'diaspora'        => '#000000',
@@ -858,10 +872,12 @@ class Buttons {
 			'flattr'          => '#f67c1a',
 			'flickr'          => '#ff0084',
 			'flipboard'       => '#e12828',
+			'gemini'          => '#8E75B2',
 			'get_pocket'      => '#ef4056',
 			'getpocket'       => '#ef4056',
 			'gmail'           => '#D44638',
 			'googlebookmarks' => '#4285F4',
+			'grok'            => '#000000',
 			'hackernews'      => '#ff4000',
 			'instagram'       => '#bc2a8d',
 			'instapaper'      => '#000000',
@@ -879,6 +895,7 @@ class Buttons {
 			'odnoklassniki'   => '#d7772d',
 			'outlook'         => '#3070CB',
 			'patreon'         => '#F96854',
+			'perplexity'      => '#1FB8CD',
 			'pinterest'       => '#CB2027',
 			'print'           => '#222222',
 			'qzone'           => '#F1C40F',
@@ -919,6 +936,50 @@ class Buttons {
 	}
 
 	/**
+	 * Get the AI assistant buttons that take the prompt in the URL.
+	 *
+	 * These open a chat prefilled with a prompt about the page in a new tab,
+	 * rather than a share dialog in a popup window.
+	 *
+	 * @return array
+	 */
+	public static function get_ai_buttons() {
+		return array( 'chatgpt', 'claude', 'grok', 'perplexity' );
+	}
+
+	/**
+	 * Get the AI assistant buttons that need the prompt copied instead.
+	 *
+	 * Neither accepts a prompt in a URL, so the prompt is copied to the
+	 * clipboard and the button opens a blank chat for the visitor to paste into.
+	 *
+	 * @return array
+	 */
+	public static function get_ai_copy_buttons() {
+		return array( 'copilot', 'gemini' );
+	}
+
+	/**
+	 * Build the prompt handed to an AI assistant.
+	 *
+	 * @param string $title     Page title.
+	 * @param string $share_url Page URL.
+	 *
+	 * @return string
+	 */
+	public static function get_ai_prompt( $title, $share_url ) {
+		$parts = array_filter(
+			array(
+				self::AI_PROMPT,
+				$title,
+				$share_url,
+			)
+		);
+
+		return implode( "\n\n", $parts );
+	}
+
+	/**
 	 * Get share URL.
 	 *
 	 * @param string $button Button name string.
@@ -952,6 +1013,9 @@ class Buttons {
 		$popup = '',
 		$viber = ''
 	) {
+		// AI assistants take a prefilled prompt about the page rather than share params.
+		$ai_prompt = rawurlencode( self::get_ai_prompt( $title, $share_url ) );
+
 		$share_urls = array(
 			'blogger'         => "https://www.blogger.com/blog-this.g?n={$title}&t={$description}&u={$share_url}",
 			'bluesky'         => "https://bsky.app/intent/compose?text={$title} | {$share_url}",
@@ -960,15 +1024,20 @@ class Buttons {
 			'delicious'       => "https://del.icio.us/save?provider=sharethis&title={$title}&url={$share_url}&v=5",
 			'diggit'          => "https://digg.com/submit?url={$share_url}",
 			'douban'          => "http://www.douban.com/recommend/?title={$title}&url={$share_url}",
+			'chatgpt'         => "https://chatgpt.com/?q={$ai_prompt}&hints=search",
+			'claude'          => "https://claude.ai/new?q={$ai_prompt}",
+			'copilot'         => 'https://copilot.microsoft.com/',
 			'copy'            => $share_url,
 			'email'           => "mailto:?subject={$title}&body={$share_url}",
 			'evernote'        => "http://www.evernote.com/clip.action?title={$title}&url={$share_url}",
 			'facebook'        => "https://www.facebook.com/sharer.php?t={$title}&u={$share_url}",
 			'flipboard'       => "https://share.flipboard.com/bookmarklet/popout?ext=sharethis&title={$title}&url={$share_url}&utm_campaign=widgets&utm_content=hostname&utm_source=sharethis&v=2",
 			'flattr'          => "https://flattr.com/submit/auto?user={$user_id}&title={$title}&url={$share_url}",
+			'gemini'          => 'https://gemini.google.com/app',
 			'get_pocket'      => "https://getpocket.com/edit?url={$share_url}",
 			'gmail'           => "https://mail.google.com/mail/?view=cm&to=&su{$title}&body{$share_url}&bcc=&cc=",
 			'googlebookmarks' => "https://www.google.com/bookmarks/mark?op=edit&bkmk={$share_url}&title{$title}&annotation{$description}",
+			'grok'            => "https://grok.com/?q={$ai_prompt}",
 			'hackernews'      => "https://news.ycombinator.com/submitlink?u={$share_url}&t={$title}",
 			'instapaper'      => "http://www.instapaper.com/edit?url={$share_url}&title={$title}&description={$description}",
 			'iorbix'          => "https://iorbix.com/m-share?url={$share_url}&title={$title}",
@@ -983,6 +1052,7 @@ class Buttons {
 			'messenger'       => "https://www.facebook.com/dialog/send?link={$share_url}&app_id=291494419107518&redirect_uri=https://www.sharethis.com",
 			'odnoklassniki'   => "https://connect.ok.ru/dk?st.cmd=WidgetSharePreview&st.shareUrl{$share_url}",
 			'outlook'         => "https://outlook.live.com/mail/deeplink/compose?path=mail inbox&subject={$subject}&body={$message}",
+			'perplexity'      => "https://www.perplexity.ai/search/new?q={$ai_prompt}",
 			'pinterest'       => "https://pinterest.com/pin/create/button/?description={$title}&media={$image}&url={$share_url}",
 			'qzone'           => "http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url={$share_url}",
 			'print'           => '#',

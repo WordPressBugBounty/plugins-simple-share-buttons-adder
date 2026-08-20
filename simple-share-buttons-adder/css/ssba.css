@@ -117,4 +117,5 @@
 	font-size: 1rem;
 	left: 50%;
 	transform: translateX(-50%)
-}
+}.ssba-copy-notify{background:#272727;border-radius:4px;bottom:100%;box-shadow:0 2px 8px rgba(0,0,0,0.25);box-sizing:border-box;color:#fff;display:block;font-size:12px;font-weight:normal;left:50%;line-height:1.4;margin-bottom:8px;max-width:220px;opacity:1;padding:6px 10px;pointer-events:none;position:absolute;text-align:center;text-transform:none;transform:translateX(-50%);transition:opacity .3s ease,transform .3s ease;white-space:normal;width:max-content;z-index:10000}
+.ssba-copy-notify--hiding{opacity:0;transform:translate(-50%,-4px)}
