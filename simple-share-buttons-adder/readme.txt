@@ -3,8 +3,8 @@ Contributors: sharethis, scottstorebloom, scottmweaver
 Tags: share buttons, bluesky, social buttons, share, share links
 Requires at least: 5.9
 Tested up to: 7.1
-Stable tag: 8.7.0
-Version: 8.7.0
+Stable tag: 8.7.1
+Version: 8.7.1
 License: GPLv2 or later
 
 A simple plugin that enables you to add share buttons to all of your posts and/or pages.
@@ -68,6 +68,9 @@ Please visit the <a href="https://wordpress.org/support/plugin/simple-share-butt
 4. An example of the buttons shown below page content using the "Ribbon" theme.
 
 == Changelog ==
+
+= 8.7.1 =
+* Add a Live Preview on WordPress.org so you can try the plugin in WordPress Playground before installing.
 
 = 8.7.0 =
 * Add AI assistant share buttons: ChatGPT, Claude, Copilot, Gemini, Grok, Perplexity.
